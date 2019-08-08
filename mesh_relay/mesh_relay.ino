@@ -83,7 +83,7 @@ void loop() {
   if(relayValue!=relaySet) {
     digitalWrite(RELAY_PIN, relaySet);
     relayValue = relaySet;
-    if (!simpleMqtt._switch(PUBLISH, "relay", relaySet?SWITCH_ON:SWITCH_OFF)) { //publish topic device1/switch/relay/value on
+    if (!simpleMqtt._switch(PUBLISH, "relay", relaySet?SWITCH_ON:SWITCH_OFF)) { //publish topic device1/switch/relay/value on/off
       Serial.println("Publish failed... Reboot");
       delay(10000);
       ESP.restart();
