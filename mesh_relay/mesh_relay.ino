@@ -18,20 +18,12 @@ bool relaySet=false;
 
 SimpleMQTT simpleMqtt = SimpleMQTT(ttl, deviceName);
 
-void espNowFloodingMeshRecv(const uint8_t *data, int len, uint32_t replyPrt) {
-  if (len > 0) {
-    simpleMqtt.parse(data, len, replyPrt); //Parse simple Mqtt protocol messages
-  }
-}
-
 void setup() {
   Serial.begin(115200);
 
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
 
-  //Set device in AP mode to begin with
-  espNowFloodingMesh_RecvCB(espNowFloodingMeshRecv);
   espNowFloodingMesh_secredkey(secredKey);
   espNowFloodingMesh_setAesInitializationVector(iv);
   espNowFloodingMesh_setToMasterRole(false, ttl);
